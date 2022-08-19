@@ -1,0 +1,116 @@
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section {
+    width: 90vw;
+    height: 90vh;
+    background-color: rgba(252, 78, 113, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+section .content {
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease-in-out;
+}
+
+section .content.hide {
+    visibility : hidden;
+    opacity: 0
+}
+
+section .content svg.feather {
+    width: 70px;
+    height: 70px;
+    color: #FC4E71;
+    stroke-width: 1.5;
+}
+
+section .content h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #FC4E71;
+    margin: 30px 0 10px 0;
+}
+
+section .content h4 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #293856;
+    margin-top: 10px;
+}
+
+section .content img {
+    margin-top: 30px;
+}
+
+section .content button {
+    min-height: 60px;
+    background-color: #00A4EB;
+    margin-top: 60px;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+}
+
+section .content button:hover {
+    background-color: #0893D0;
+    cursor: pointer;
+}
+
+section .icon-send {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    bottom: -130px;
+}
+
+section .icon-send.animation {
+    -webkit-animation: animationIcon 1s 0.5s linear;
+    animation: animationIcon 1s 0.5s linear;
+}
+
+section .icon-send svg {
+    width: 100%;
+    height: 100%;
+    stroke-width: 1;
+    transform: rotate(314deg);
+    color: #00A4EB;
+}
+
+@-webkit-keyframes animationIcon {
+    from {
+        bottom: -130px;
+    }
+    to {
+        bottom: 1000px;
+    }
+}
+@keyframes animationIcon {
+    from {
+        bottom: -130px;
+    }
+    to {
+        bottom: 1000px;
+    }
+}
