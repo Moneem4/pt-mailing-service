@@ -45,7 +45,7 @@ steps:
       command: upgrade
       chartPath: build/helm
       arguments: --debug --atomic --cleanup-on-fail --install --set image.tag=$(tag)
-      namespace: mail-service
-      chartName: mail-service
-      releaseName: mail-service
+      namespace: mailservice
+      chartName: mailservice
+      releaseName: mailservice
       chartType: build/helm
