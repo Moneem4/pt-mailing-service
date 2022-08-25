@@ -1,0 +1,51 @@
+# Maven
+# Build your Java project and run tests with Apache Maven.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+
+variables:
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: '1fb3f1f9-a5f0-45e2-9617-88230cfbdf39'
+  imageRepository: 'evonikmailservice'
+  containerRegistry: 'evonikmailservice.azurecr.io'
+  dockerfilePath: '**/Dockerfile'
+  tag: '$(Build.BuildId)'
+
+
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
+steps:     
+  - task: Docker@2
+    displayName: Build and push an image to container registry
+    inputs:
+      command: buildAndPush
+      repository: $(imageRepository)
+      dockerfile: $(dockerfilePath)
+      containerRegistry: $(dockerRegistryServiceConnection)
+      tags: |
+        $(tag)
+  - task: HelmInstaller@1
+    displayName: Helm installer
+    inputs: 
+      helmVersionToInstall: latest
+  - task: HelmDeploy@0
+    displayName: helm package
+    inputs:
+      kubernetesServiceEndpoint: evonik-aks-mail-service
+      azureResourceGroup: $(azureResourceGroup)
+      kubernetesCluster: $(kubernetesCluster)      
+      command: upgrade
+      chartPath: build/helm
+      arguments: --debug --atomic --cleanup-on-fail --install --set image.tag=$(tag)
+      namespace: mailservice
+      chartName: mailservice
+      releaseName: mailservice
+      chartType: build/helm

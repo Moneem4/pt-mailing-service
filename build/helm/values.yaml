@@ -1,0 +1,51 @@
+# Namespace to deploy this component into
+namespace: mailservice
+# Name to use as basename the created Kubernetes resources
+name: mailservice
+# The number of replicas to instantiate for this component.
+# IDEA : Rename to replicaCount
+# IDEA : Add/configure Autoscaling capability
+replicas: 1
+## Name of ServiceAccount the pmp api will run under
+## Must have access to the RDS
+serviceAccount:
+  name: mailservice
+## pmp api Ingress.
+##
+ingress:
+  # FQDN to access the endpoint
+  # e.g. issuer.api.example.com
+  host: mailservice.k8s.pharmatrace.io
+image:
+  # Docker image to use for main pod, and the tag to pull
+  # (At KBC the value of tag is injected/overridden by deployment pipeline)
+  # ImagePullSecrets are not supported (yet)
+  repository: evonikmailservice.azurecr.io/evonikmailservice
+  imagePullPolicy: Always
+  tag: 
+  # Overrides the image tag whose default is the chart appVersion.
+
+## pmp api containers' resource requests and limits
+resources:
+  # Maximum usage (cpu / mem) Kubernetes will allow this component to use
+  limits:
+    cpu: 200m
+    memory: 200Mi
+  # Minimum capacity (cpu / mem) Kubernetes must reserve for this component
+  requests:
+    cpu: 100m
+    memory: 100Mi
+
+# ExtraEnvVars is a convenience mechanism to specify additional "unspecified/undocumented"
+# environment variables which can be passed in to the main container of the pod.
+# This is to be used sparingly and exceptionally -- in general the expectation would
+# be that such values migrate to specific documented values in this file.
+#
+# See the Readme.md for the full list of environment variables.
+#
+# Example :
+#    - name: APP_FEATURE_RDS-IAM
+#      value: "true"
+#    - name: APP_NETWORK_SERVICE_DISCOVERY_AS_LOCALHOST
+#      value: "false"
+extraEnvVars:
