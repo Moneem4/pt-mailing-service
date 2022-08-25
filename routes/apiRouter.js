@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post('/api/test-email', async (req, res) => {
     try {
-        const responseEmail = await sendEmail({
+        const responseEmail = await sendEmail.sendTextPlainEmail({
             to: 'f.laterra@pharmatrace.io',
             from: 'f.laterra@pharmatrace.io',
             subject: 'Sending test email',
@@ -21,4 +21,19 @@ router.post('/api/test-email', async (req, res) => {
     }
 });
 
+router.post('/api/test-email-template', async (req, res) => {
+    try {
+        const responseEmail = await sendEmail.sendEmailWithTemplate({
+            to: req.body.to,
+            from: 'f.laterra@pharmatrace.io',
+            templateId: process.env.SENDGRID_TEMPLATE_ID,
+            dynamicTemplateData: req.body.dynamic_template_data
+        });
+        res.send(responseEmail[0]);
+    } catch (error) {
+        res.send(error);
+    }
+});
+
 module.exports = router;
+

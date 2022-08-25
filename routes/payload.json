@@ -1,0 +1,16 @@
+{
+  "to": "email@example.com",
+  "version": "Verification Failure Notification",
+  "dynamic_template_data": {
+    "subject": "Need Attention - Verification Failure Notification",
+    "main_text": "We've detected a verification failure in Evonik environment.",
+    "content": [
+      { "key":  "Account Holder", "value": "Username" },
+      { "key":  "Product", "value": "Product Name" },
+      { "key":  "Location", "value": "Site Name" }
+    ],
+    "text_before_button": "Please take necessary actions from your end.",
+    "button_text": "Take action now",
+    "button_url": "https://example.com"
+  }
+}
