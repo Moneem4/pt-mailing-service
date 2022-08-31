@@ -1,10 +1,16 @@
 const express = require('express');
+const AzureAuthorization = require('../middlewares/AzureAuthorization');
+const UserService = require('../services/UserService');
 /**
  * Import the utility SendGrid
  */
 const sendEmail = require ('../utils/SendGrid');
 
 const router = express.Router();
+
+router.get('/users', [AzureAuthorization], (req, res) => {
+    return UserService.getUsers(req, res);
+});
 
 router.post('/api/test-email', async (req, res) => {
     try {
