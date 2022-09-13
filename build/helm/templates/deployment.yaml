@@ -32,6 +32,8 @@ spec:
             - name: SENDGRID_API_KEY
               value: "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" 
             - name: SENDGRID_TEMPLATE_ID
-              value: "d-4a1f79291afb422392c6d7d004ff4b66"                                                                                   
+              value: "d-4a1f79291afb422392c6d7d004ff4b66"
+            - name: AZURE_APPLICATION_ID
+              value: "4b045000-58da-4b31-9e84-cc1e954acd86"                                                                                                   
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
