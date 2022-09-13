@@ -17,12 +17,14 @@ const resolvers = {
         usersQuery: () => users
     },
     Mutation: {
-        notifyAdminMutation: async (parent, args) => {
+        notifyAdminMutation: async (parent, args, context) => {
             let response = null;
+            let accessToken = context.req.headers.accesstoken.replace(/\"/g, '');
             // Get owners from Azure Application (app-admin)
-            const result = await getOwnersRoleAppAdmin()
+            const result = await getOwnersRoleAppAdmin(accessToken)
                 .then((res) => {
                     response = res.data.value;
+                    console.log(response);
                     return true;
                 })
                 .catch((error) => {
