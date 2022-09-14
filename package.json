@@ -2,17 +2,23 @@
   "name": "sendgrid-send-email",
   "version": "1.0.0",
   "description": "Email API Quickstart for Node.js",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "start-watch": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Federico La Terra",
   "license": "ISC",
   "dependencies": {
+    "@apollo/subgraph": "^2.1.1",
+    "@graphql-tools/schema": "^9.0.3",
     "@sendgrid/mail": "^7.7.0",
-    "express": "^4.18.1"
-  },
-  "devDependencies": {
-    "dotenv": "^16.0.1"
+    "apollo-server-express": "^3.10.2",
+    "axios": "^0.27.2",
+    "body-parser": "^1.20.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "graphql": "^16.6.0"
   }
 }
