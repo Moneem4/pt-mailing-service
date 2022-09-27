@@ -39,9 +39,10 @@ const routes = require('./src/routes/RestApiRouter');
         },
     });
 
-    app.use(routes);
     // Parse incoming request bodies in a middleware before handlers
     app.use(bodyParser.json());
+
+    app.use(routes);
 
     await server.start();
     server.applyMiddleware({ app });
