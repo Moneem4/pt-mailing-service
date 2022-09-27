@@ -30,7 +30,7 @@ router.post('/api/pharmatrace/test-email', async (req, res) => {
     /**
      * I build the dynamic object of the fields
      */
-    const formFieldsContent = req.body.dynamic_template_data.form_fields_content.map(obj => {
+    const formFieldsContent = req.body.dynamicTemplateData.formFieldsContent.map(obj => {
         return `
             <li><strong>${obj.key}:</strong> ${obj.value}</li>
         `
@@ -40,11 +40,11 @@ router.post('/api/pharmatrace/test-email', async (req, res) => {
         const responseEmail = await SendGrid.textPlainEmail({
             to: req.body.to,
             from: 'f.laterra@pharmatrace.io',
-            subject: req.body.dynamic_template_data.subject,
-            text: req.body.dynamic_template_data.main_text,
+            subject: req.body.dynamicTemplateData.subject,
+            text: req.body.dynamicTemplateData.mainText,
             html:`
-                <h3>${req.body.dynamic_template_data.main_text}</h3>
-                <p><strong>${req.body.dynamic_template_data.sub_text}</strong></p>
+                <h3>${req.body.dynamicTemplateData.mainText}</h3>
+                <p><strong>${req.body.dynamicTemplateData.subText}</strong></p>
                 <ul>${formFieldsContent}</ul>
             `
         });
