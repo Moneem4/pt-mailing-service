@@ -7,9 +7,7 @@ const SendGrid = require ('../utils/SendGrid');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.redirect('/graphql');
-});
+router.get('/', (req, res) => { res.status(200).send('success') });
 
 router.post('/api/test-email', async (req, res) => {
     try {
