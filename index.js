@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const { ApolloServer } = require('apollo-server-express');
 const { buildSubgraphSchema } = require('@apollo/subgraph');
 
@@ -41,6 +42,10 @@ const routes = require('./src/routes/RestApiRouter');
 
     // Parse incoming request bodies in a middleware before handlers
     app.use(bodyParser.json());
+
+    app.use(cors({
+        origin: '*'
+    }));
 
     app.use(routes);
 
