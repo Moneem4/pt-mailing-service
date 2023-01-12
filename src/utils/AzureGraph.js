@@ -10,7 +10,7 @@ const AzureGraph = {
     async getApi(endpoint, accessToken) {
         const options = {
             headers: {
-                Authorization: `Bearer ${accessToken}`
+                Authorization: accessToken
             }
         };
         try {

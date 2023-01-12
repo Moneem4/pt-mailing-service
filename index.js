@@ -53,5 +53,5 @@ const routes = require('./src/routes/RestApiRouter');
     server.applyMiddleware({ app });
 
     await new Promise(resolve => app.listen({ port: SERVER_PORT }, resolve));
-    console.log(`🚀 Server GraphQl ready at ${process.env.APP_URL}:${SERVER_PORT}${process.env.GRAPHQL_PATH}`);
+    console.log(`🚀 Server GraphQl ready at http://localhost:${SERVER_PORT}${process.env.GRAPHQL_PATH}`);
 })();

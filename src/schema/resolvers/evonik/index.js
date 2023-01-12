@@ -24,7 +24,7 @@ const resolvers = {
             const result = await getOwnersRoleAppAdmin(accessToken)
                 .then((res) => {
                     response = res.data.value;
-                    console.log(response);
+                    
                     return true;
                 })
                 .catch((error) => {
